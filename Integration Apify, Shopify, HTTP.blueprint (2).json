@@ -1,0 +1,1224 @@
+{
+    "name": "Integration Apify, Shopify, HTTP",
+    "flow": [
+        {
+            "id": 13,
+            "module": "http:ActionSendData",
+            "version": 3,
+            "parameters": {
+                "handleErrors": true,
+                "useNewZLibDeCompress": true
+            },
+            "mapper": {
+                "ca": "",
+                "qs": [],
+                "url": "https://api.apify.com/v2/datasets/6RFUCu4J4Dr7OaSzC/items?clean=true&format=json",
+                "gzip": true,
+                "method": "get",
+                "headers": [],
+                "timeout": "",
+                "useMtls": false,
+                "authPass": "",
+                "authUser": "",
+                "bodyType": "multipart_form_data",
+                "serializeUrl": false,
+                "shareCookies": false,
+                "parseResponse": true,
+                "followRedirect": true,
+                "formDataFields": [],
+                "useQuerystring": false,
+                "followAllRedirects": false,
+                "rejectUnauthorized": true
+            },
+            "metadata": {
+                "designer": {
+                    "x": 280,
+                    "y": 0
+                },
+                "restore": {
+                    "expect": {
+                        "qs": {
+                            "mode": "chose"
+                        },
+                        "method": {
+                            "mode": "chose",
+                            "label": "GET"
+                        },
+                        "headers": {
+                            "mode": "chose"
+                        },
+                        "bodyType": {
+                            "label": "Multipart/form-data"
+                        },
+                        "formDataFields": {
+                            "mode": "chose"
+                        }
+                    }
+                },
+                "parameters": [
+                    {
+                        "name": "handleErrors",
+                        "type": "boolean",
+                        "label": "Evaluate all states as errors (except for 2xx and 3xx )",
+                        "required": true
+                    },
+                    {
+                        "name": "useNewZLibDeCompress",
+                        "type": "hidden"
+                    }
+                ],
+                "expect": [
+                    {
+                        "name": "url",
+                        "type": "url",
+                        "label": "URL",
+                        "required": true
+                    },
+                    {
+                        "name": "serializeUrl",
+                        "type": "boolean",
+                        "label": "Serialize URL",
+                        "required": true
+                    },
+                    {
+                        "name": "method",
+                        "type": "select",
+                        "label": "Method",
+                        "required": true,
+                        "validate": {
+                            "enum": [
+                                "get",
+                                "head",
+                                "post",
+                                "put",
+                                "patch",
+                                "delete",
+                                "options"
+                            ]
+                        }
+                    },
+                    {
+                        "name": "headers",
+                        "spec": [
+                            {
+                                "name": "name",
+                                "type": "text",
+                                "label": "Name",
+                                "required": true
+                            },
+                            {
+                                "name": "value",
+                                "type": "text",
+                                "label": "Value"
+                            }
+                        ],
+                        "type": "array",
+                        "label": "Headers"
+                    },
+                    {
+                        "name": "qs",
+                        "spec": [
+                            {
+                                "name": "name",
+                                "type": "text",
+                                "label": "Name",
+                                "required": true
+                            },
+                            {
+                                "name": "value",
+                                "type": "text",
+                                "label": "Value"
+                            }
+                        ],
+                        "type": "array",
+                        "label": "Query String"
+                    },
+                    {
+                        "name": "bodyType",
+                        "type": "select",
+                        "label": "Body type",
+                        "validate": {
+                            "enum": [
+                                "raw",
+                                "x_www_form_urlencoded",
+                                "multipart_form_data"
+                            ]
+                        }
+                    },
+                    {
+                        "name": "parseResponse",
+                        "type": "boolean",
+                        "label": "Parse response",
+                        "required": true
+                    },
+                    {
+                        "name": "authUser",
+                        "type": "text",
+                        "label": "User name"
+                    },
+                    {
+                        "name": "authPass",
+                        "type": "password",
+                        "label": "Password"
+                    },
+                    {
+                        "name": "timeout",
+                        "type": "uinteger",
+                        "label": "Timeout",
+                        "validate": {
+                            "max": 300,
+                            "min": 1
+                        }
+                    },
+                    {
+                        "name": "shareCookies",
+                        "type": "boolean",
+                        "label": "Share cookies with other HTTP modules",
+                        "required": true
+                    },
+                    {
+                        "name": "ca",
+                        "type": "cert",
+                        "label": "Self-signed certificate"
+                    },
+                    {
+                        "name": "rejectUnauthorized",
+                        "type": "boolean",
+                        "label": "Reject connections that are using unverified (self-signed) certificates",
+                        "required": true
+                    },
+                    {
+                        "name": "followRedirect",
+                        "type": "boolean",
+                        "label": "Follow redirect",
+                        "required": true
+                    },
+                    {
+                        "name": "useQuerystring",
+                        "type": "boolean",
+                        "label": "Disable serialization of multiple same query string keys as arrays",
+                        "required": true
+                    },
+                    {
+                        "name": "gzip",
+                        "type": "boolean",
+                        "label": "Request compressed content",
+                        "required": true
+                    },
+                    {
+                        "name": "useMtls",
+                        "type": "boolean",
+                        "label": "Use Mutual TLS",
+                        "required": true
+                    },
+                    {
+                        "name": "formDataFields",
+                        "spec": [
+                            {
+                                "name": "fieldType",
+                                "type": "select",
+                                "label": "Field type",
+                                "options": [
+                                    {
+                                        "label": "Text",
+                                        "value": "text",
+                                        "nested": [
+                                            {
+                                                "name": "key",
+                                                "type": "text",
+                                                "label": "Key",
+                                                "required": true
+                                            },
+                                            {
+                                                "name": "value",
+                                                "type": "text",
+                                                "label": "Value"
+                                            }
+                                        ]
+                                    },
+                                    {
+                                        "label": "File",
+                                        "value": "file",
+                                        "nested": [
+                                            {
+                                                "name": "key",
+                                                "type": "text",
+                                                "label": "Key",
+                                                "required": true
+                                            },
+                                            {
+                                                "name": "data",
+                                                "type": "buffer",
+                                                "label": "Data",
+                                                "semantic": "file:data"
+                                            },
+                                            {
+                                                "help": "File name, including the suffix, e.g. invoice, xml",
+                                                "name": "fileName",
+                                                "type": "filename",
+                                                "label": "File name",
+                                                "semantic": "file:name"
+                                            }
+                                        ]
+                                    }
+                                ],
+                                "required": true
+                            }
+                        ],
+                        "type": "array",
+                        "label": "Fields"
+                    },
+                    {
+                        "name": "followAllRedirects",
+                        "type": "boolean",
+                        "label": "Follow all redirect",
+                        "required": true
+                    }
+                ]
+            }
+        },
+        {
+            "id": 3,
+            "module": "builtin:BasicFeeder",
+            "version": 1,
+            "parameters": {},
+            "mapper": {
+                "array": "{{13.data}}"
+            },
+            "metadata": {
+                "designer": {
+                    "x": 600,
+                    "y": 0
+                },
+                "restore": {
+                    "expect": {
+                        "array": {
+                            "mode": "edit"
+                        }
+                    }
+                },
+                "expect": [
+                    {
+                        "mode": "edit",
+                        "name": "array",
+                        "spec": [],
+                        "type": "array",
+                        "label": "Array"
+                    }
+                ]
+            }
+        },
+        {
+            "id": 4,
+            "module": "shopify:SearchForProducts",
+            "version": 2,
+            "parameters": {
+                "__IMTCONN__": 3140165
+            },
+            "mapper": {
+                "limit": "1",
+                "title": "{{13.data[].title}}"
+            },
+            "metadata": {
+                "designer": {
+                    "x": 900,
+                    "y": 0
+                },
+                "restore": {
+                    "expect": {
+                        "status": {
+                            "mode": "chose",
+                            "label": "Empty"
+                        },
+                        "published_status": {
+                            "mode": "chose",
+                            "label": "Empty"
+                        }
+                    },
+                    "parameters": {
+                        "__IMTCONN__": {
+                            "data": {
+                                "scoped": "true",
+                                "connection": "shopify"
+                            },
+                            "label": "My Shopify connection (www.arzolascaps.com)"
+                        }
+                    }
+                },
+                "parameters": [
+                    {
+                        "name": "__IMTCONN__",
+                        "type": "account:shopify,shopify4",
+                        "label": "Connection",
+                        "required": true
+                    }
+                ],
+                "expect": [
+                    {
+                        "name": "title",
+                        "type": "text",
+                        "label": "Title"
+                    },
+                    {
+                        "name": "vendor",
+                        "type": "text",
+                        "label": "Vendor"
+                    },
+                    {
+                        "name": "handle",
+                        "type": "text",
+                        "label": "Handle"
+                    },
+                    {
+                        "name": "product_type",
+                        "type": "text",
+                        "label": "Product type"
+                    },
+                    {
+                        "name": "status",
+                        "type": "select",
+                        "label": "Status",
+                        "validate": {
+                            "enum": [
+                                "active",
+                                "archived",
+                                "draft"
+                            ]
+                        }
+                    },
+                    {
+                        "name": "published_status",
+                        "type": "select",
+                        "label": "Published Status",
+                        "validate": {
+                            "enum": [
+                                "published",
+                                "unpublished"
+                            ]
+                        }
+                    },
+                    {
+                        "name": "limit",
+                        "type": "number",
+                        "label": "Limit",
+                        "required": true
+                    }
+                ]
+            }
+        },
+        {
+            "id": 5,
+            "module": "builtin:BasicRouter",
+            "version": 1,
+            "mapper": null,
+            "metadata": {
+                "designer": {
+                    "x": 1200,
+                    "y": 0
+                }
+            },
+            "routes": [
+                {
+                    "flow": [
+                        {
+                            "id": 6,
+                            "module": "builtin:BasicFeeder",
+                            "version": 1,
+                            "parameters": {},
+                            "filter": {
+                                "name": "NUEVO",
+                                "conditions": [
+                                    [
+                                        {
+                                            "a": "Bundles[0].Items array length = 0",
+                                            "b": "",
+                                            "o": "text:equal"
+                                        }
+                                    ]
+                                ]
+                            },
+                            "mapper": {
+                                "array": "13. Data[].medias[].url"
+                            },
+                            "metadata": {
+                                "designer": {
+                                    "x": 1475,
+                                    "y": -174
+                                },
+                                "restore": {
+                                    "expect": {
+                                        "array": {
+                                            "mode": "edit"
+                                        }
+                                    }
+                                },
+                                "expect": [
+                                    {
+                                        "mode": "edit",
+                                        "name": "array",
+                                        "spec": [],
+                                        "type": "array",
+                                        "label": "Array"
+                                    }
+                                ]
+                            }
+                        },
+                        {
+                            "id": 7,
+                            "module": "http:ActionSendData",
+                            "version": 3,
+                            "parameters": {
+                                "handleErrors": true,
+                                "useNewZLibDeCompress": true
+                            },
+                            "mapper": {
+                                "ca": "",
+                                "qs": [],
+                                "url": "https://api.pixian.ai/api/v2/remove-background",
+                                "gzip": true,
+                                "method": "post",
+                                "headers": [],
+                                "timeout": "",
+                                "useMtls": false,
+                                "authPass": "8207r47bhhc45k7q0bu6bfcv2etekhrvimg1dc9c3j9dbhu9eehp",
+                                "authUser": "pxrfq4igvlnahkd",
+                                "bodyType": "multipart_form_data",
+                                "serializeUrl": true,
+                                "shareCookies": false,
+                                "parseResponse": true,
+                                "followRedirect": true,
+                                "formDataFields": [
+                                    {
+                                        "key": "image",
+                                        "data": "{{13.data[].medias[].url}}",
+                                        "fileName": "image.jpg",
+                                        "fieldType": "file"
+                                    }
+                                ],
+                                "useQuerystring": false,
+                                "followAllRedirects": true,
+                                "rejectUnauthorized": false
+                            },
+                            "metadata": {
+                                "designer": {
+                                    "x": 1825,
+                                    "y": -168
+                                },
+                                "restore": {
+                                    "expect": {
+                                        "qs": {
+                                            "mode": "chose"
+                                        },
+                                        "method": {
+                                            "mode": "chose",
+                                            "label": "POST"
+                                        },
+                                        "headers": {
+                                            "mode": "chose"
+                                        },
+                                        "bodyType": {
+                                            "label": "Multipart/form-data"
+                                        },
+                                        "formDataFields": {
+                                            "mode": "chose",
+                                            "items": [
+                                                {
+                                                    "fieldType": {
+                                                        "mode": "chose",
+                                                        "label": "File"
+                                                    }
+                                                }
+                                            ]
+                                        }
+                                    }
+                                },
+                                "parameters": [
+                                    {
+                                        "name": "handleErrors",
+                                        "type": "boolean",
+                                        "label": "Evaluate all states as errors (except for 2xx and 3xx )",
+                                        "required": true
+                                    },
+                                    {
+                                        "name": "useNewZLibDeCompress",
+                                        "type": "hidden"
+                                    }
+                                ],
+                                "expect": [
+                                    {
+                                        "name": "url",
+                                        "type": "url",
+                                        "label": "URL",
+                                        "required": true
+                                    },
+                                    {
+                                        "name": "serializeUrl",
+                                        "type": "boolean",
+                                        "label": "Serialize URL",
+                                        "required": true
+                                    },
+                                    {
+                                        "name": "method",
+                                        "type": "select",
+                                        "label": "Method",
+                                        "required": true,
+                                        "validate": {
+                                            "enum": [
+                                                "get",
+                                                "head",
+                                                "post",
+                                                "put",
+                                                "patch",
+                                                "delete",
+                                                "options"
+                                            ]
+                                        }
+                                    },
+                                    {
+                                        "name": "headers",
+                                        "spec": [
+                                            {
+                                                "name": "name",
+                                                "type": "text",
+                                                "label": "Name",
+                                                "required": true
+                                            },
+                                            {
+                                                "name": "value",
+                                                "type": "text",
+                                                "label": "Value"
+                                            }
+                                        ],
+                                        "type": "array",
+                                        "label": "Headers"
+                                    },
+                                    {
+                                        "name": "qs",
+                                        "spec": [
+                                            {
+                                                "name": "name",
+                                                "type": "text",
+                                                "label": "Name",
+                                                "required": true
+                                            },
+                                            {
+                                                "name": "value",
+                                                "type": "text",
+                                                "label": "Value"
+                                            }
+                                        ],
+                                        "type": "array",
+                                        "label": "Query String"
+                                    },
+                                    {
+                                        "name": "bodyType",
+                                        "type": "select",
+                                        "label": "Body type",
+                                        "validate": {
+                                            "enum": [
+                                                "raw",
+                                                "x_www_form_urlencoded",
+                                                "multipart_form_data"
+                                            ]
+                                        }
+                                    },
+                                    {
+                                        "name": "parseResponse",
+                                        "type": "boolean",
+                                        "label": "Parse response",
+                                        "required": true
+                                    },
+                                    {
+                                        "name": "authUser",
+                                        "type": "text",
+                                        "label": "User name"
+                                    },
+                                    {
+                                        "name": "authPass",
+                                        "type": "password",
+                                        "label": "Password"
+                                    },
+                                    {
+                                        "name": "timeout",
+                                        "type": "uinteger",
+                                        "label": "Timeout",
+                                        "validate": {
+                                            "max": 300,
+                                            "min": 1
+                                        }
+                                    },
+                                    {
+                                        "name": "shareCookies",
+                                        "type": "boolean",
+                                        "label": "Share cookies with other HTTP modules",
+                                        "required": true
+                                    },
+                                    {
+                                        "name": "ca",
+                                        "type": "cert",
+                                        "label": "Self-signed certificate"
+                                    },
+                                    {
+                                        "name": "rejectUnauthorized",
+                                        "type": "boolean",
+                                        "label": "Reject connections that are using unverified (self-signed) certificates",
+                                        "required": true
+                                    },
+                                    {
+                                        "name": "followRedirect",
+                                        "type": "boolean",
+                                        "label": "Follow redirect",
+                                        "required": true
+                                    },
+                                    {
+                                        "name": "useQuerystring",
+                                        "type": "boolean",
+                                        "label": "Disable serialization of multiple same query string keys as arrays",
+                                        "required": true
+                                    },
+                                    {
+                                        "name": "gzip",
+                                        "type": "boolean",
+                                        "label": "Request compressed content",
+                                        "required": true
+                                    },
+                                    {
+                                        "name": "useMtls",
+                                        "type": "boolean",
+                                        "label": "Use Mutual TLS",
+                                        "required": true
+                                    },
+                                    {
+                                        "name": "formDataFields",
+                                        "spec": [
+                                            {
+                                                "name": "fieldType",
+                                                "type": "select",
+                                                "label": "Field type",
+                                                "options": [
+                                                    {
+                                                        "label": "Text",
+                                                        "value": "text",
+                                                        "nested": [
+                                                            {
+                                                                "name": "key",
+                                                                "type": "text",
+                                                                "label": "Key",
+                                                                "required": true
+                                                            },
+                                                            {
+                                                                "name": "value",
+                                                                "type": "text",
+                                                                "label": "Value"
+                                                            }
+                                                        ]
+                                                    },
+                                                    {
+                                                        "label": "File",
+                                                        "value": "file",
+                                                        "nested": [
+                                                            {
+                                                                "name": "key",
+                                                                "type": "text",
+                                                                "label": "Key",
+                                                                "required": true
+                                                            },
+                                                            {
+                                                                "name": "data",
+                                                                "type": "buffer",
+                                                                "label": "Data",
+                                                                "semantic": "file:data"
+                                                            },
+                                                            {
+                                                                "help": "File name, including the suffix, e.g. invoice, xml",
+                                                                "name": "fileName",
+                                                                "type": "filename",
+                                                                "label": "File name",
+                                                                "semantic": "file:name"
+                                                            }
+                                                        ]
+                                                    }
+                                                ],
+                                                "required": true
+                                            }
+                                        ],
+                                        "type": "array",
+                                        "label": "Fields"
+                                    },
+                                    {
+                                        "name": "followAllRedirects",
+                                        "type": "boolean",
+                                        "label": "Follow all redirect",
+                                        "required": true
+                                    }
+                                ],
+                                "advanced": true
+                            }
+                        },
+                        {
+                            "id": 8,
+                            "module": "builtin:BasicAggregator",
+                            "version": 1,
+                            "parameters": {
+                                "feeder": 4
+                            },
+                            "mapper": {},
+                            "metadata": {
+                                "designer": {
+                                    "x": 2125,
+                                    "y": -168
+                                },
+                                "restore": {
+                                    "extra": {
+                                        "feeder": {
+                                            "label": "Shopify - Search for Products [4]"
+                                        },
+                                        "target": {
+                                            "label": "Custom"
+                                        }
+                                    }
+                                }
+                            }
+                        },
+                        {
+                            "id": 9,
+                            "module": "util:ComposeTransformer",
+                            "version": 1,
+                            "metadata": {
+                                "designer": {
+                                    "x": 2425,
+                                    "y": -168
+                                }
+                            }
+                        },
+                        {
+                            "id": 14,
+                            "module": "shopify:CreateProduct",
+                            "version": 2,
+                            "parameters": {
+                                "__IMTCONN__": 3140165
+                            },
+                            "mapper": {
+                                "title": "{{3.title}}",
+                                "status": "active",
+                                "vendor": "Arzola´s Caps",
+                                "variants": [
+                                    {
+                                        "price": "{{formatNumber((parseNumber(3.variants[1].price.current) / 100) + 1500; 2; \".\"; \"\")}}",
+                                        "taxable": true,
+                                        "inventory_quantity": "50"
+                                    }
+                                ],
+                                "published": true
+                            },
+                            "metadata": {
+                                "designer": {
+                                    "x": 2725,
+                                    "y": -168
+                                },
+                                "restore": {
+                                    "expect": {
+                                        "tags": {
+                                            "mode": "chose"
+                                        },
+                                        "images": {
+                                            "mode": "chose"
+                                        },
+                                        "status": {
+                                            "mode": "chose",
+                                            "label": "Active"
+                                        },
+                                        "options": {
+                                            "mode": "chose"
+                                        },
+                                        "variants": {
+                                            "mode": "chose",
+                                            "items": [
+                                                {
+                                                    "taxable": {
+                                                        "mode": "chose"
+                                                    },
+                                                    "weight_unit": {
+                                                        "mode": "chose",
+                                                        "label": "Empty"
+                                                    },
+                                                    "inventory_policy": {
+                                                        "mode": "edit"
+                                                    },
+                                                    "presentment_prices": {
+                                                        "mode": "chose"
+                                                    },
+                                                    "fulfillment_service": {
+                                                        "mode": "edit"
+                                                    },
+                                                    "inventory_management": {
+                                                        "mode": "edit"
+                                                    }
+                                                }
+                                            ]
+                                        },
+                                        "published": {
+                                            "mode": "chose"
+                                        },
+                                        "published_scope": {
+                                            "mode": "chose",
+                                            "label": "Empty"
+                                        }
+                                    },
+                                    "parameters": {
+                                        "__IMTCONN__": {
+                                            "data": {
+                                                "scoped": "true",
+                                                "connection": "shopify"
+                                            },
+                                            "label": "My Shopify connection (www.arzolascaps.com)"
+                                        }
+                                    }
+                                },
+                                "parameters": [
+                                    {
+                                        "name": "__IMTCONN__",
+                                        "type": "account:shopify,shopify4",
+                                        "label": "Connection",
+                                        "required": true
+                                    }
+                                ],
+                                "expect": [
+                                    {
+                                        "name": "title",
+                                        "type": "text",
+                                        "label": "Title",
+                                        "required": true
+                                    },
+                                    {
+                                        "name": "product_type",
+                                        "type": "text",
+                                        "label": "Product type"
+                                    },
+                                    {
+                                        "name": "status",
+                                        "type": "select",
+                                        "label": "Status",
+                                        "validate": {
+                                            "enum": [
+                                                "active",
+                                                "archived",
+                                                "draft"
+                                            ]
+                                        }
+                                    },
+                                    {
+                                        "name": "body_html",
+                                        "type": "text",
+                                        "label": "Body HTML"
+                                    },
+                                    {
+                                        "name": "vendor",
+                                        "type": "text",
+                                        "label": "Vendor"
+                                    },
+                                    {
+                                        "name": "tags",
+                                        "spec": {
+                                            "name": "value",
+                                            "type": "text"
+                                        },
+                                        "type": "array",
+                                        "label": "Tags"
+                                    },
+                                    {
+                                        "name": "published",
+                                        "type": "boolean",
+                                        "label": "Published"
+                                    },
+                                    {
+                                        "name": "published_at",
+                                        "type": "date",
+                                        "label": "Published at"
+                                    },
+                                    {
+                                        "name": "published_scope",
+                                        "type": "select",
+                                        "label": "Published scope",
+                                        "validate": {
+                                            "enum": [
+                                                "web",
+                                                "global"
+                                            ]
+                                        }
+                                    },
+                                    {
+                                        "name": "handle",
+                                        "type": "text",
+                                        "label": "Handle"
+                                    },
+                                    {
+                                        "name": "options",
+                                        "spec": [
+                                            {
+                                                "name": "name",
+                                                "type": "text",
+                                                "label": "Name",
+                                                "required": true
+                                            }
+                                        ],
+                                        "type": "array",
+                                        "label": "Options"
+                                    },
+                                    {
+                                        "name": "variants",
+                                        "spec": [
+                                            {
+                                                "name": "price",
+                                                "type": "number",
+                                                "label": "Price"
+                                            },
+                                            {
+                                                "name": "option1",
+                                                "type": "text",
+                                                "label": "Option 1"
+                                            },
+                                            {
+                                                "name": "option2",
+                                                "type": "text",
+                                                "label": "Option 2"
+                                            },
+                                            {
+                                                "name": "option3",
+                                                "type": "text",
+                                                "label": "Option 3"
+                                            },
+                                            {
+                                                "name": "sku",
+                                                "type": "text",
+                                                "label": "SKU"
+                                            },
+                                            {
+                                                "name": "barcode",
+                                                "type": "text",
+                                                "label": "Barcode"
+                                            },
+                                            {
+                                                "name": "fulfillment_service",
+                                                "type": "select",
+                                                "label": "Fulfillment service",
+                                                "dynamic": true,
+                                                "options": [],
+                                                "validate": false
+                                            },
+                                            {
+                                                "name": "inventory_management",
+                                                "type": "select",
+                                                "label": "Inventory management",
+                                                "dynamic": true,
+                                                "options": [],
+                                                "validate": false
+                                            },
+                                            {
+                                                "name": "inventory_policy",
+                                                "type": "select",
+                                                "label": "Inventory policy",
+                                                "options": [
+                                                    {
+                                                        "label": "deny",
+                                                        "value": "deny"
+                                                    },
+                                                    {
+                                                        "label": "continue",
+                                                        "value": "continue"
+                                                    }
+                                                ],
+                                                "validate": false
+                                            },
+                                            {
+                                                "name": "inventory_quantity",
+                                                "type": "number",
+                                                "label": "Inventory quantity"
+                                            },
+                                            {
+                                                "name": "grams",
+                                                "type": "number",
+                                                "label": "Grams"
+                                            },
+                                            {
+                                                "name": "compare_at_price",
+                                                "type": "text",
+                                                "label": "Compare at price"
+                                            },
+                                            {
+                                                "name": "presentment_prices",
+                                                "spec": [
+                                                    {
+                                                        "name": "price",
+                                                        "spec": [
+                                                            {
+                                                                "name": "amount",
+                                                                "type": "text",
+                                                                "label": "Amount",
+                                                                "required": true
+                                                            },
+                                                            {
+                                                                "name": "currency_code",
+                                                                "type": "text",
+                                                                "label": "Currency code",
+                                                                "required": true
+                                                            }
+                                                        ],
+                                                        "type": "collection",
+                                                        "label": "Price"
+                                                    },
+                                                    {
+                                                        "name": "compare_at_price",
+                                                        "spec": [
+                                                            {
+                                                                "name": "amount",
+                                                                "type": "text",
+                                                                "label": "Amount"
+                                                            },
+                                                            {
+                                                                "name": "currency_code",
+                                                                "type": "text",
+                                                                "label": "Currency code"
+                                                            }
+                                                        ],
+                                                        "type": "collection",
+                                                        "label": "Compare at price"
+                                                    }
+                                                ],
+                                                "type": "array",
+                                                "label": "Presentment prices"
+                                            },
+                                            {
+                                                "name": "position",
+                                                "type": "number",
+                                                "label": "Position"
+                                            },
+                                            {
+                                                "name": "taxable",
+                                                "type": "boolean",
+                                                "label": "Taxable"
+                                            },
+                                            {
+                                                "name": "taxcode",
+                                                "type": "text",
+                                                "label": "Tax code"
+                                            },
+                                            {
+                                                "name": "weight",
+                                                "type": "number",
+                                                "label": "Weight"
+                                            },
+                                            {
+                                                "name": "weight_unit",
+                                                "type": "select",
+                                                "label": "Weight unit",
+                                                "options": [
+                                                    {
+                                                        "label": "g",
+                                                        "value": "g"
+                                                    },
+                                                    {
+                                                        "label": "kg",
+                                                        "value": "kg"
+                                                    },
+                                                    {
+                                                        "label": "oz",
+                                                        "value": "oz"
+                                                    },
+                                                    {
+                                                        "label": "lb",
+                                                        "value": "lb"
+                                                    }
+                                                ]
+                                            }
+                                        ],
+                                        "type": "array",
+                                        "label": "Variants"
+                                    },
+                                    {
+                                        "name": "images",
+                                        "spec": [
+                                            {
+                                                "name": "data",
+                                                "type": "buffer",
+                                                "label": "Data",
+                                                "required": true
+                                            },
+                                            {
+                                                "name": "alt",
+                                                "type": "text",
+                                                "label": "Alternate text"
+                                            },
+                                            {
+                                                "name": "position",
+                                                "type": "number",
+                                                "label": "Position"
+                                            }
+                                        ],
+                                        "type": "array",
+                                        "label": "Images"
+                                    },
+                                    {
+                                        "name": "template_suffix",
+                                        "type": "text",
+                                        "label": "Template suffix"
+                                    },
+                                    {
+                                        "name": "metafields_global_title_tag",
+                                        "type": "text",
+                                        "label": "Metafields global title tag"
+                                    },
+                                    {
+                                        "name": "metafields_global_description_tag",
+                                        "type": "text",
+                                        "label": "Metafields global description tag"
+                                    }
+                                ],
+                                "advanced": true
+                            }
+                        }
+                    ]
+                },
+                {
+                    "flow": [
+                        {
+                            "id": null,
+                            "module": "placeholder:Placeholder",
+                            "filter": {
+                                "name": "YA EXISTE",
+                                "conditions": []
+                            },
+                            "metadata": {
+                                "designer": {
+                                    "x": 1542,
+                                    "y": 175
+                                }
+                            }
+                        }
+                    ]
+                }
+            ]
+        }
+    ],
+    "metadata": {
+        "instant": false,
+        "version": 1,
+        "scenario": {
+            "roundtrips": 1,
+            "maxErrors": 3,
+            "autoCommit": true,
+            "autoCommitTriggerLast": true,
+            "sequential": false,
+            "slots": null,
+            "confidential": false,
+            "dataloss": false,
+            "dlq": false,
+            "freshVariables": false
+        },
+        "designer": {
+            "orphans": []
+        },
+        "zone": "us2.make.com",
+        "notes": []
+    }
+}
